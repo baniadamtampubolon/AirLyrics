@@ -13,7 +13,7 @@ class UpdaterService {
     // Sparkle / Update Controller
     let updaterController: SPUStandardUpdaterController
     
-    init() {
+    @MainActor init() {
         // Setup Sparkle updater service
         updaterController = SPUStandardUpdaterController(startingUpdater: true, updaterDelegate: nil, userDriverDelegate: nil)
     }
@@ -39,3 +39,4 @@ class UpdaterService {
         }
     }
 }
+

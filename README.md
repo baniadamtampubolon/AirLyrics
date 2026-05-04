@@ -1,6 +1,9 @@
-# Lyric Fever
+# Air Lyrics (with Persistent Touch Bar Support)
 
 <img src="logo.png" alt="Logo" width="15%">
+
+> **Disclaimer:** This is a modified version of the original [LyricFever](https://github.com/aviwad/LyricFever) project by Avi Wadhwa. 
+> This version adds a persistent, system-wide Touch Bar integration (similar to LyricsX), allowing lyrics to be displayed across the entire Touch Bar even when the app is running in the background.
 
 The Best Lyrics Experience for Spotify & Apple Music on macOS. It Just Works.
 

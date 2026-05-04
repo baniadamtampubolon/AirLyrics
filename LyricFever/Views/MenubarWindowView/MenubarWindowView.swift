@@ -140,7 +140,10 @@ struct MenubarWindowView: View {
                 }
                 songControls
                 
-                ProgressView(value: displayLyrics == .enabled ? viewmodel.currentTime.currentTime : 0, total: Double(viewmodel.duration))
+                let total = max(0.0, Double(viewmodel.duration))
+                let rawValue = displayLyrics == .enabled ? viewmodel.currentTime.currentTime : 0
+                let clampedValue = min(max(rawValue, 0), total > 0 ? total : 0)
+                ProgressView(value: clampedValue, total: max(total, 0.0001))
                     .progressViewStyle(ColoredThinProgressViewStyle(color: .secondary, thickness: 4))
                     .frame(height: 4)
                     .padding(.horizontal, 4)

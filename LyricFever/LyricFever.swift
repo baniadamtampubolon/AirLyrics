@@ -94,6 +94,7 @@ struct LyricFever: App {
             }
             .onAppear {
                 viewmodel.onAppear(openWindow)
+                TouchBarController.shared.setupControlStrip()
             }
             .onReceive(DistributedNotificationCenter.default().publisher(for: Notification.Name(rawValue:  "com.apple.Music.playerInfo"))) { notification in
                 viewmodel.appleMusicPlaybackDidChange(notification)

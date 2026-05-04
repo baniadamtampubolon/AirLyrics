@@ -24,7 +24,7 @@ import MediaRemoteAdapter
     static let shared = ViewModel()
     
     // Apple Music Tahoe broken AppleScript workaround
-    let musicController = MediaController(bundleIdentifier: "com.apple.Music")
+    let musicController = MediaController()
 //    var appleMusicUniqueIdentifier: String?
 
     var currentlyPlaying: String?
@@ -47,7 +47,7 @@ import MediaRemoteAdapter
         return formatter.string(from: TimeInterval(totalSeconds)) ?? "0:00"
     }
     private func initAppleMusicWorkaround() {
-        musicController.onTrackInfoReceived = { data in
+        musicController.onTrackInfoReceived = { (data: TrackInfo?) in
             print("Track info received")
             Task { @MainActor in
 //                if self.appleMusicUniqueIdentifier == data.payload.uniqueIdentifier {
@@ -174,12 +174,43 @@ import MediaRemoteAdapter
     var currentlyPlayingArtist: String?
     var currentAlbumName: String?
     var currentlyPlayingLyrics: [LyricLine] = []
-    var currentlyPlayingLyricsIndex: Int?
-    var isPlaying: Bool = false
+    var currentlyPlayingLyricsIndex: Int? {
+        didSet {
+            #if os(macOS)
+            TouchBarController.shared.updateLyric(text: currentLyricText)
+            #endif
+        }
+    }
+    var isPlaying: Bool = false {
+        didSet {
+            #if os(macOS)
+            TouchBarController.shared.updateLyric(text: currentLyricText)
+            #endif
+        }
+    }
     var romanizedLyrics: [String] = []
     var chineseConversionLyrics: [String] = []
     var translatedLyric: [String] = []
     var showLyrics = true
+    
+    var currentLyricText: String? {
+        if userDefaultStorage.hasOnboarded {
+            if isPlaying, showLyrics, let index = currentlyPlayingLyricsIndex {
+                if translationExists {
+                    return translatedLyric[index]
+                } else if !romanizedLyrics.isEmpty {
+                    return romanizedLyrics[index]
+                } else if !chineseConversionLyrics.isEmpty {
+                    return chineseConversionLyrics[index]
+                } else {
+                    return currentlyPlayingLyrics[index].words
+                }
+            } else if let currentlyPlayingName = currentlyPlayingName, let currentlyPlayingArtist = currentlyPlayingArtist {
+                return "\(currentlyPlayingName) - \(currentlyPlayingArtist)"
+            }
+        }
+        return nil
+    }
     #if os(macOS)
     var fullscreen = false
     var spotifyConnectDelay: Bool = false
