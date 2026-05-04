@@ -3,7 +3,19 @@
 <img src="logo.png" alt="Logo" width="15%">
 
 > **Disclaimer:** This is a modified version of the original [LyricFever](https://github.com/aviwad/LyricFever) project by Avi Wadhwa. 
-> This version adds a persistent, system-wide Touch Bar integration (similar to LyricsX), allowing lyrics to be displayed across the entire Touch Bar even when the app is running in the background.
+> This version introduces a powerful, system-wide Touch Bar integration.
+
+## 🌟 The Ultimate Touch Bar Experience
+Air Lyrics transforms your MacBook's Touch Bar into a persistent, edge-to-edge lyric display. Unlike standard apps that lose Touch Bar focus when you switch windows, Air Lyrics uses advanced system APIs to embed itself directly into the **macOS Control Strip**. 
+
+![Touch Bar Preview](touchbar-lyrics-preview.png)
+
+### Touch Bar Features:
+- **System-Wide Visibility:** Your lyrics stay on the Touch Bar no matter what app you are currently working on (whether you are typing in Word, coding in Xcode, or browsing Chrome).
+- **Control Strip Integration:** A subtle 🎵 icon rests in your Control Strip. When music plays, it expands into a **System Modal Touch Bar** that takes over the entire width for an immersive lyric experience.
+- **Tap to Dismiss:** Need to adjust volume or brightness? Simply tap the lyrics to temporarily dismiss them and return to the standard system controls.
+
+The Best Lyrics Experience for Spotify & Apple Music on macOS. It Just Works.
 
 The Best Lyrics Experience for Spotify & Apple Music on macOS. It Just Works.
 
